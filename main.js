@@ -146,5 +146,9 @@ function queryMetadata() {
 ${metadata.description}`);
   }
 
-  return lines.join("\n");
+  let content = lines.join("\n");
+  if (window['completion'] !== undefined && window['completion'] !== null) {
+    completion(content);
+  }
+  return content;
 })();
