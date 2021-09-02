@@ -116,7 +116,7 @@ function queryMetadata() {
   return metadata;
 }
 
-(function() {
+var content = (function() {
   let metadata = queryMetadata();
 
   let mdTitle = metadata.title.replace(/[\[\]]/g, '\\$&');
@@ -146,9 +146,7 @@ function queryMetadata() {
 ${metadata.description}`);
   }
 
-  let content = lines.join("\n");
-  if (window['completion'] !== undefined && window['completion'] !== null) {
-    completion(content);
-  }
-  return content;
+  return lines.join("\n");
 })();
+
+content;
