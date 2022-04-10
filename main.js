@@ -126,7 +126,7 @@ var content = (function() {
     lines.push(`![artwork](${metadata.image})`);
   }
   lines.push(`
-#${metadata.tags.join(' #')} [[${new Date().toISOString().split('T')[0]}]]
+#${metadata.tags.join(' #')} 🗓[[${new Date().toISOString().split('T')[0]}]]
 
 [${metadata.host}](${metadata.href})`);
 
