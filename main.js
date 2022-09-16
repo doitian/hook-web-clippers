@@ -188,7 +188,7 @@ var content = (function () {
 ## Metadata
 `);
     metadata.extra.forEach((entry) => {
-      lines.push(`- ${entry.key}: ${entry.value}`);
+      lines.push(`**${entry.key}**:: ${entry.value}`);
     });
   }
 
