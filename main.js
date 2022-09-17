@@ -129,7 +129,7 @@ function queryOreillyLearningMetadata(metadata) {
 
 function queryGitHubMetadata(metadata) {
   // check if repo homepage
-  if (metadata.href.split('/').length == 5) {
+  if (metadata.href.split("/").length == 5) {
     const parts = metadata.title.split(": ", 2);
     metadata.title = parts[0];
     metadata.description = parts[1];
@@ -149,7 +149,7 @@ function queryMetadata() {
     metaP("og:description") || metaN("description")
   );
   metadata.image = presence(metaP("og:image"));
-  metadata.tags = ["from/browser"];
+  metadata.tags = [];
   metadata.href = query('link[rel="canonical"]', "href") || location.href;
   metadata.host = metadata.href.split("://", 2)[1].split("/", 1)[0];
   metadata.extra = [];
@@ -177,16 +177,21 @@ var content = (function () {
     lines.push(`![artwork](${metadata.image})`);
   }
   lines.push(`
-#zettel/fleeting #${metadata.tags.join(" #")} 🗓[[${
-    new Date().toISOString().split("T")[0]
-  }]]
-
-[${metadata.host}](${metadata.href})`);
-
-  if (metadata.extra.length > 0) {
-    lines.push(`
 ## Metadata
 `);
+
+  if (metadata.image !== null) {
+    lines.push(`**Artwork**:: ${metadata.image}`);
+  }
+  lines.push("**Zettel**:: #zettel/fleeting");
+  lines.push("**Source**:: #from/browser");
+  lines.push(`**URL**:: [${metadata.host}](${metadata.href})`);
+  if (metadata.tags.length > 0) {
+    lines.push(`**Document Tags**:: #${metadata.tags.join(" #")}`);
+  }
+  lines.push(`**Created**: [[${new Date().toISOString().split("T")[0]}]]`);
+
+  if (metadata.extra.length > 0) {
     metadata.extra.forEach((entry) => {
       lines.push(`**${entry.key}**:: ${entry.value}`);
     });

@@ -8,7 +8,7 @@
       .replace(/[\[\]:|?/\\\r\n'"]+/g, ' ')
       .trim();
 
-    let url = `obsidian://new?vault=Brain&file=scratch%2F${encodeURIComponent(fileName)}&content=${encodeURIComponent(content)}`;
+    let url = `obsidian://new?vault=Brain&file=dock%2F${encodeURIComponent(fileName)}&content=${encodeURIComponent(content)}`;
 
     let app = Application.currentApplication();
     app.includeStandardAdditions = true;
