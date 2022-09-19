@@ -186,6 +186,7 @@ var content = (function () {
   lines.push("**Zettel**:: #zettel/fleeting");
   lines.push("**Source**:: #from/browser");
   lines.push(`**URL**:: [${metadata.host}](${metadata.href})`);
+  lines.push(`**Host**:: [[${metadata.host}]]`);
   if (metadata.tags.length > 0) {
     lines.push(`**Document Tags**:: #${metadata.tags.join(" #")}`);
   }
