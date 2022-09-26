@@ -186,11 +186,11 @@ var content = (function () {
   lines.push("**Zettel**:: #zettel/fleeting");
   lines.push("**Source**:: #from/browser");
   lines.push(`**URL**:: [${metadata.host}](${metadata.href})`);
-  lines.push(`**Website**:: [[${metadata.host}]]`);
+  lines.push(`**Host**:: [[${metadata.host}]]`);
   if (metadata.tags.length > 0) {
     lines.push(`**Document Tags**:: #${metadata.tags.join(" #")}`);
   }
-  lines.push(`**Created**: [[${new Date().toISOString().split("T")[0]}]]`);
+  lines.push(`**Created**:: [[${new Date().toISOString().split("T")[0]}]]`);
 
   if (metadata.extra.length > 0) {
     metadata.extra.forEach((entry) => {
