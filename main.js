@@ -183,6 +183,7 @@ var content = (function () {
   if (metadata.image !== null) {
     lines.push(`**Artwork**:: ${metadata.image}`);
   }
+  lines.push("**Status**:: #i");
   lines.push("**Zettel**:: #zettel/fleeting");
   lines.push("**Source**:: #from/browser");
   lines.push(`**URL**:: [${metadata.host}](${metadata.href})`);
