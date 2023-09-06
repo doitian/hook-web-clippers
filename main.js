@@ -18,7 +18,6 @@ function metaN(name) {
 
 function presence(value) {
   if (value !== null && value !== undefined) {
-    console.log(value);
     value = value.trim();
     if (value !== "") {
       return value;
@@ -60,13 +59,13 @@ function queryAppleStoreMetadata(metadata) {
     extra,
     "Price",
     ".app-header__list__item--price",
-    (el) => el.innerText
+    (el) => el.innerText,
   );
   queryExtra(
     extra,
     "Rating",
     ".star-rating__count",
-    (el) => el.innerText.split(" ")[0]
+    (el) => el.innerText.split(" ")[0],
   );
 }
 
@@ -94,7 +93,7 @@ function queryAmazonUSMetadata(metadata) {
     extra,
     "Rating",
     ".a-icon-star .a-icon-alt",
-    (el) => el.innerText.split(" ")[0]
+    (el) => el.innerText.split(" ")[0],
   );
 }
 
@@ -108,7 +107,7 @@ function queryOreillyLearningMetadata(metadata) {
 
   const extra = metadata.extra;
   const authors = Array.from(
-    document.querySelectorAll('meta[property="og:book:author"]')
+    document.querySelectorAll('meta[property="og:book:author"]'),
   )
     .map((el) => `[[${el.content}]]`)
     .join(" ");
@@ -117,13 +116,13 @@ function queryOreillyLearningMetadata(metadata) {
     extra,
     "ISBN",
     'meta[property="og:book:isbn"]',
-    (el) => el.content
+    (el) => el.content,
   );
   queryExtra(
     extra,
     "Publisher",
     'meta[name="publisher"]',
-    (el) => `[[${el.content}]]`
+    (el) => `[[${el.content}]]`,
   );
 }
 
@@ -135,7 +134,7 @@ function queryGitHubMetadata(metadata) {
     metadata.description = parts[1];
   }
   const topics = Array.from(document.querySelectorAll(".topic-tag")).map((el) =>
-    el.text.trim()
+    el.text.trim(),
   );
 
   metadata.tags = metadata.tags.concat(topics);
@@ -144,9 +143,10 @@ function queryGitHubMetadata(metadata) {
 function queryMetadata() {
   const metadata = {};
 
-  metadata.title = presence(metaP("og:title") || document.title);
+  metadata.title =
+    presence(metaP("og:title") || document.title) || location.href;
   metadata.description = presence(
-    metaP("og:description") || metaN("description")
+    metaP("og:description") || metaN("description"),
   );
   metadata.image = presence(metaP("og:image"));
   metadata.tags = [];
