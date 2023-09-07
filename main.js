@@ -172,7 +172,15 @@ var content = (function () {
 
   const mdTitle = metadata.title.replace(/[\[\]]/g, "\\$&");
 
-  const lines = [`# ${mdTitle}`];
+  const lines = [];
+
+  if (metadata.image !== null) {
+    lines.push("---");
+    lines.push(`cover: ${metadata.image}`);
+    lines.push("---");
+  }
+
+  lines.push(`# ${mdTitle}`);
   if (metadata.image !== null) {
     lines.push(`![artwork](${metadata.image})`);
   }
@@ -180,9 +188,6 @@ var content = (function () {
 ## Metadata
 `);
 
-  if (metadata.image !== null) {
-    lines.push(`**Artwork**:: ${metadata.image}`);
-  }
   lines.push("**Status**:: #i");
   lines.push("**Zettel**:: #zettel/fleeting");
   lines.push("**Source**:: #from/browser");
